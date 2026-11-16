@@ -1,0 +1,8 @@
+access: sso
+roles:
+  viewer: ["*@theliven.com"]
+public_paths:
+  - /mcp
+  - /token
+  - /register
+  - /.well-known/*
