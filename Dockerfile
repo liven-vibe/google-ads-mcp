@@ -9,12 +9,15 @@ COPY --from=ghcr.io/astral-sh/uv:latest /uv /uvx /bin/
 # Set the working directory in the container
 WORKDIR /app
 
+COPY pyproject.toml ./
+RUN uv pip install --system -r pyproject.toml
+
 # Copy the project files into the container
 COPY . .
 
 # Install the project and its dependencies
 # We use --system to install into the system Python environment in the container
-RUN uv pip install --system .
+RUN uv pip install --system --no-deps .
 
 # Codex CLI 0.146 reports the RFC 9207 `iss` value as missing from the local
 # OAuth callback, even though FastMCP constructs the redirect with `iss` and
