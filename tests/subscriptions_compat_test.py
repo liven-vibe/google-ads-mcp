@@ -25,6 +25,7 @@ from ads_mcp.coordinator import ensure_subscriptions_listen
 class SubscriptionsListenCompatibilityTest(unittest.TestCase):
     def test_registers_missing_subscriptions_listen_handler(self):
         server = FastMCP("compat-test")
+        server._mcp_server._request_handlers.pop("subscriptions/listen", None)
 
         self.assertNotIn(
             "subscriptions/listen", server._mcp_server._request_handlers
