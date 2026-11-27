@@ -1,0 +1,16 @@
+name: Deploy
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  gcp:
+    uses: liven-vibe/.github/.github/workflows/deploy-gcp.yml@main
+    permissions:
+      contents: read
+      id-token: write
+    with:
+      app: google-ads-mcp
+      test: false
